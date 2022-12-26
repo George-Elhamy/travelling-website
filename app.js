@@ -174,41 +174,41 @@ app.get('/searchresults', function(req,res){
   }
 });
 
-var MongoClient = require('mongodb').MongoClient;
+//var MongoClient = require('mongodb').MongoClient;
 
 
-  var db = client.db('myDB');
+  //var db = client.db('myDB');
 
   app.get('/wanttogo', async function(req,res){
-    var places = await db.collection('myCollection').find({UserID: sess.username}).toArray()
+    //var places = await db.collection('myCollection').find({UserID: sess.username}).toArray()
     console.log(places)
     res.render('wanttogo', {list: places});
   
   });
  
-  app.post('/register', async function(req,res){
-    var x = req.body.username;
-    var y = req.body.password;
+  // app.post('/register', async function(req,res){
+  //   var x = req.body.username;
+  //   var y = req.body.password;
 
    
-      var test = await db.collection('myCollection').findOne({username: x})
-      if (x===''||y===''){
+  //     var test = await db.collection('myCollection').findOne({username: x})
+  //     if (x===''||y===''){
         
-        res.render('registration', {error: " username or password required please!"})
-      }
-      else if(test){  
-        res.render('registration', {error: "Username already exist"}) 
-      }
-       else{
-      db.collection('myCollection').insertOne({username: x,password: y });
-      flag = true;
-      res.redirect('/');
-      //res.render('login', {accept: " Registered Successfully"} )
+  //       res.render('registration', {error: " username or password required please!"})
+  //     }
+  //     else if(test){  
+  //       res.render('registration', {error: "Username already exist"}) 
+  //     }
+  //      else{
+  //     db.collection('myCollection').insertOne({username: x,password: y });
+  //     flag = true;
+  //     res.redirect('/');
+  //     //res.render('login', {accept: " Registered Successfully"} )
      
       
-      }
+  //     }
 
-  });
+  // });
 
   app.post('/', async function(req,res){
     var x = req.body.username;
@@ -221,128 +221,128 @@ var MongoClient = require('mongodb').MongoClient;
         sess.username=x;
         sess.password=y;
         sess.save();
-    } else {
-    var test = await db.collection('myCollection').findOne({username: x, password:y})
-      if (x===''||y===''){ 
+    // } else {
+    // var test = await db.collection('myCollection').findOne({username: x, password:y})
+    //   if (x===''||y===''){ 
         
-        res.render('login', {accept: " username or password required please!"})
-      }
-      else if(test){
-        res.render('home') 
+    //     res.render('login', {accept: " username or password required please!"})
+    //   }
+    //   else if(test){
+    //     res.render('home') 
         
-        sess=req.session;
-        sess.username=x;
-        sess.password=y;
-        sess.save();
-      }
-       else{
+    //     sess=req.session;
+    //     sess.username=x;
+    //     sess.password=y;
+    //     sess.save();
+    //   }
+    //    else{
      
      
-      res.render('login', {accept: " Username or password is not correct"} )
-      }
+    //   res.render('login', {accept: " Username or password is not correct"} )
+    //   }
     }
   });
 
   app.post('/paris', async function(req,res){
-    if (sess && sess.username!=undefined ){
-    var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "paris"})
-    if(!test){
-    db.collection('myCollection').insertOne({UserID: sess.username, Place: "paris"});
-    res.render('paris', {error: " Added successfully"});
-    }else{
-      res.render('paris', {error: " Already in the WishList"});
-    }
-  }
-  else {
+  //   if (sess && sess.username!=undefined ){
+  //   var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "paris"})
+  //   if(!test){
+  //   db.collection('myCollection').insertOne({UserID: sess.username, Place: "paris"});
+  //   res.render('paris', {error: " Added successfully"});
+  //   }else{
+  //     res.render('paris', {error: " Already in the WishList"});
+  //   }
+  // }
+  // else {
 
-      res.redirect('/')
+  //     res.redirect('/')
 
 
-  }
+  // }
   })
 
   app.post('/rome', async function(req,res){
-    if (sess && sess.username!=undefined ){
-    var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "rome"})
-    if(!test){
-    db.collection('myCollection').insertOne({UserID: sess.username, Place: "rome"});
-    res.render('rome', {error: " Added successfully"});
-    }else{
-      res.render('rome', {error: " Already in the WishList"});
+  //   if (sess && sess.username!=undefined ){
+  //   var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "rome"})
+  //   if(!test){
+  //   db.collection('myCollection').insertOne({UserID: sess.username, Place: "rome"});
+  //   res.render('rome', {error: " Added successfully"});
+  //   }else{
+  //     res.render('rome', {error: " Already in the WishList"});
 
-    }
-  }
-  else {
+  //   }
+  // }
+  // else {
 
-      res.redirect('/')
+  //     res.redirect('/')
 
 
-  }
+  // }
   });
 
   app.post('/inca', async function(req,res){
-    if (sess && sess.username!=undefined ){
-    var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "inca"})
-    if(!test){
-    db.collection('myCollection').insertOne({UserID: sess.username, Place: "inca"});
-    res.render('inca', {error: " Added successfully"});
-    } else {
-      res.render('inca', {error: " Already in the WishList"});
-    }
-  }
-  else {
+  //   if (sess && sess.username!=undefined ){
+  //   var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "inca"})
+  //   if(!test){
+  //   db.collection('myCollection').insertOne({UserID: sess.username, Place: "inca"});
+  //   res.render('inca', {error: " Added successfully"});
+  //   } else {
+  //     res.render('inca', {error: " Already in the WishList"});
+  //   }
+  // }
+  // else {
 
-      res.redirect('/')
+  //     res.redirect('/')
 
 
-  }
+  // }
   })
 
   app.post('/santorini', async function(req,res){
-    if (sess && sess.username!=undefined ){
-    var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "santorini"})
-    if(!test){
-    db.collection('myCollection').insertOne({UserID: sess.username, Place: "santorini"});
-    res.render('santorini', {error: " Added successfully"});
-    }else{
-      res.render('santorini', {error: " Already in the WishList"});
-    }
-  }
-  else {
+  //   if (sess && sess.username!=undefined ){
+  //   var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "santorini"})
+  //   if(!test){
+  //   db.collection('myCollection').insertOne({UserID: sess.username, Place: "santorini"});
+  //   res.render('santorini', {error: " Added successfully"});
+  //   }else{
+  //     res.render('santorini', {error: " Already in the WishList"});
+  //   }
+  // }
+  // else {
 
-      res.redirect('/')
+  //     res.redirect('/')
 
 
-  }
+  // }
   })
 
   app.post('/bali', async function(req,res){
-    if (sess && sess.username!=undefined ){
-    var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "bali"})
-    if(!test){
-    db.collection('myCollection').insertOne({UserID: sess.username, Place: "bali"});
-    res.render('santorini', {error: " Added successfully"});
-    }else{
-      res.render('bali', {error: " Already in the WishList"});
-    } 
-  }
-  else {
+  //   if (sess && sess.username!=undefined ){
+  //   var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "bali"})
+  //   if(!test){
+  //   db.collection('myCollection').insertOne({UserID: sess.username, Place: "bali"});
+  //   res.render('santorini', {error: " Added successfully"});
+  //   }else{
+  //     res.render('bali', {error: " Already in the WishList"});
+  //   } 
+  // }
+  // else {
 
-      res.redirect('/')
+  //     res.redirect('/')
 
 
-  }   
+  // }   
   })
 
   app.post('/annapurna', async function(req,res){
     
-    var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "annapurna"})
-    if(!test){
-    db.collection('myCollection').insertOne({UserID: sess.username, Place: "annapurna"});
-    res.render('santorini', {error: " Added successfully"});
-    } else {
-      res.render('annapurna', {error: " Already in the WishList"});
-    }
+    // var test = await db.collection('myCollection').findOne({UserID: sess.username, Place: "annapurna"})
+    // if(!test){
+    // db.collection('myCollection').insertOne({UserID: sess.username, Place: "annapurna"});
+    // res.render('santorini', {error: " Added successfully"});
+    // } else {
+    //   res.render('annapurna', {error: " Already in the WishList"});
+    // }
   })
 
   app.post('/search', async function (req, res) {
