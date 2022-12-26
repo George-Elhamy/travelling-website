@@ -176,8 +176,7 @@ app.get('/searchresults', function(req,res){
 
 var MongoClient = require('mongodb').MongoClient;
 
-MongoClient.connect('mongodb://127.0.0.1:27017', function (err,client) {
-  if (err) throw err;
+
   var db = client.db('myDB');
 
   app.get('/wanttogo', async function(req,res){
@@ -369,7 +368,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017', function (err,client) {
     }
   })
 
-});
+
 
 
 app.listen(PORT, () => {
