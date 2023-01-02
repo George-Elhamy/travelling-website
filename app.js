@@ -226,38 +226,35 @@ app.get('/searchresults', function(req,res){
 
   });
 
-  app.post('/', async function(req,res){
-    var x = req.body.username;
-    var y = req.body.password;
+app.post('/', async function (req, res) {
+  var x = req.body.username;
+  var y = req.body.password;
 
-    if (x == 'admin' && y == 'admin') {
-        res.redirect('home') 
-        
-        sess=req.session;
-        sess.username=x;
-        sess.password=y;
-        sess.save();
+  if (x == 'admin' && y == 'admin') {
+    res.redirect('home')
+
+    sess = req.session;
+    sess.username = x;
+    sess.password = y;
+    sess.save();
     // } else {
     // var test = await db.collection('myCollection').findOne({username: x, password:y})
     //   if (x===''||y===''){ 
-        
+
     //     res.render('login', {accept: " username or password required please!"})
     //   }
     //   else if(test){
     //     res.render('home') 
-        
+
     //     sess=req.session;
     //     sess.username=x;
     //     sess.password=y;
     //     sess.save();
-    //   }
-    //    else{
-     
-     
-    //   res.render('login', {accept: " Username or password is not correct"} )
-    //   }
-    }
-  });
+  }
+  else {
+    res.render('login', { accept: " Username or password is not correct" })
+  }
+});
 
 app.post('/paris', async function (req, res) {
   sess = req.session
